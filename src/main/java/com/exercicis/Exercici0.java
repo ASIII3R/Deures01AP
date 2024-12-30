@@ -143,7 +143,16 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarFactors"
      */
     public static boolean validarFactors(String[] factors) {
-        // TODO
+        if (factors != null && factors.length == 2){
+            String tipus = factors[0];
+            String risc = factors[1];
+
+            if ("autònom".equals(tipus)&& "risc baix".equals(risc)){
+                return false; //Si es un autònom, no pot ser risc baix
+            }
+            return ("autònom".equals(tipus)|| "empresa".equals(tipus))&&
+            ("risc alt".equals(risc)|| "risc mitjà".equals(risc) || "risc alt".equals(risc));
+        }
         return false;
     }
 
