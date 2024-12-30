@@ -230,8 +230,25 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarClients"
      */
     public static boolean validarClients(ArrayList<String> clientsLlista, ArrayList<String> clientsGlobals) {
-        // TODO
-        return false;
+        if (clientsLlista == null || clientsGlobals == null){
+            return false;
+        }
+        HashMap<String,Integer> contarClients = new HashMap<>();
+
+        for (String client: clientsLlista){
+            if (contarClients.containsKey(client)){
+                contarClients.put(client,contarClients.get(client)+1);
+            }else{
+                contarClients.put(client,1);
+            }
+        }
+
+        for (String client: clientsLlista){
+            if (contarClients.get(client)>1 || !clientsGlobals.contains(client)){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -243,8 +260,15 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testIsAllDigits"
      */
     public static boolean isAllDigits(String str) {
-        // TODO
-        return false;
+        if (str.length()==0){
+            return false;
+        }
+        for (char c: str.toCharArray()){
+            if (!Character.isDigit(c)){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
