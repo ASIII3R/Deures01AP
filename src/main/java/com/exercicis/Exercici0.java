@@ -199,7 +199,11 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarTipusOperacio"
      */
     public static boolean validarTipusOperacio(String tipus) {
-        // TODO
+        if ("Declaració d'impostos".equals(tipus) || "Gestió laboral".equals(tipus) || "Assessoria fiscal".equals(tipus) || "Constitució de societat".equals(tipus) ||
+            "Modificació d'escriptures".equals(tipus) || "Testament".equals(tipus) || "Gestió d'herències".equals(tipus) || "Acta notarial".equals(tipus) ||
+            "Contracte de compravenda".equals(tipus) || "Contracte de lloguer".equals(tipus)){
+            return true;
+        }
         return false;
     }
 
