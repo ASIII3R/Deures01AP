@@ -423,8 +423,17 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testModificarClient"
      */
     public static String modificarClient(String clauClient, String camp, Object nouValor) {
-        // TODO
-        return "";
+        if (!clients.containsKey(clauClient)){
+            return "Client '"+ clauClient + "' no existeix.";
+        }
+        HashMap<String, Object> client = (HashMap<String, Object>) clients.get(clauClient);
+        if (!client.containsKey(camp)) {
+            return "El camp " + camp + " no existeix.";
+        }
+
+        client.put(camp, nouValor);
+
+        return "OK";
     }
 
     /**
@@ -443,8 +452,11 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testEsborrarClient"
      */
     public static String esborrarClient(String clauClient) {
-        // TODO
-        return "";
+        if (!clients.containsKey(clauClient)){
+            return "Client amb clau "+clauClient+ " no existeix.";
+        }
+        clients.remove(clauClient);
+        return "OK";
     }
 
     /**
