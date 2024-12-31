@@ -475,8 +475,31 @@ public class Exercici0 {
             ArrayList<String> claus,
             HashMap<String, Object> condicions) {
         
-        // TODO
-        return null;
+        ArrayList<HashMap<String, HashMap<String, Object>>> resultat = new ArrayList<>();
+
+        for (String clau:clients.keySet()){
+            if (!claus.contains(clau)){
+                continue;
+            }
+
+            HashMap<String,Object> dades = clients.get(clau);
+            boolean coincideix = true;
+
+            for (String key : condicions.keySet()){
+                Object valorEsperat = condicions.get(key);
+
+                if (!dades.containsKey(key) || !dades.get(key).equals(valorEsperat)){
+                    coincideix = false;
+                    break;
+                }
+            }
+            if (coincideix){
+                HashMap<String,HashMap<String,Object>> clientValid = new HashMap<>();
+                clientValid.put(clau,dades);
+                resultat.add(clientValid);
+            }
+        }
+        return resultat;
     }
 
     /**
@@ -489,8 +512,13 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testGeneraClauOperacio"
      */
     public static String generaClauOperacio() {
-        // TODO
-        return "";
+        Random random = new Random();
+        int minim = 100;
+        int maxim = 999;
+        String base = "operacio_";
+        int numrandom = random.nextInt((maxim-minim )+1);
+        String valor = base+numrandom;
+        return valor;
     }
 
     /**
