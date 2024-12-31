@@ -2,6 +2,7 @@ package com.exercicis;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -348,8 +349,7 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testValidarPreu"
      */
     public static boolean validarPreu(double preu) {
-        // TODO
-        return false;
+        return preu > 100;
     }
 
     /**
@@ -362,7 +362,12 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testGeneraClauClient"
      */
     public static String generaClauClient() {
-        // TODO
+        Random random = new Random();
+        String base = "client_";
+        Integer minim = 100;
+        Integer maxim = 999;
+        Integer numerorandom = random.nextInt((maxim-minim)+1)+minim;
+        String valor = (base+numerorandom);
         return "";
     }
 
@@ -385,8 +390,16 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testAfegirClient"
      */
     public static String afegirClient(String nom, int edat, ArrayList<String> factors, double descompte) {
-        // TODO
-        return "";
+       
+        String ClauNova = generaClauClient();
+        HashMap<String,Object> clientInfo = new HashMap<>();
+        clientInfo.put("nom", nom);
+        clientInfo.put("edat", edat);
+        clientInfo.put("factors", factors);
+        clientInfo.put("descompte", descompte);
+
+        clients.put(ClauNova,clientInfo);
+        return ClauNova;
     }
 
     /**
