@@ -704,22 +704,22 @@ public class Exercici0 {
             }
             int espais = ample-text.length();
 
-            switch(alineacio){
+            switch (alineacio) {
                 case "left":
-                resultat.append(text);
-                resultat.append(" ".repeat(espais));
-                break;
+                    resultat.append(text);
+                    resultat.append(" ".repeat(espais));
+                    break;
                 case "right":
-                resultat.append(" ".repeat(espais));
-                resultat.append(text);
-                break;
+                    resultat.append(" ".repeat(espais));
+                    resultat.append(text);
+                    break;
                 case "center":
-                int espaciosIzq = espais / 2;
-                int espaciosDer = espais - espaciosIzq;
-                resultat.append(" ".repeat(espaciosDer));
-                resultat.append(text);
-                resultat.append(" ".repeat(espaciosDer));
-                break;
+                    int espaisEsquerra = espais / 2;
+                    int espaisDreta = espais - espaisEsquerra;
+                    resultat.append(" ".repeat(espaisEsquerra));
+                    resultat.append(text);
+                    resultat.append(" ".repeat(espaisDreta));
+                    break;
             }
         }
         return resultat.toString();
