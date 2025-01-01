@@ -692,8 +692,37 @@ public class Exercici0 {
      * @test ./runTest.sh "com.exercicis.TestExercici0#testAlineaColumnes"
      */
     public static String alineaColumnes(ArrayList<Object[]> columnes) {
-        // TODO
-        return "";
+        StringBuilder resultat = new StringBuilder();
+
+        for(Object[] columna:columnes){
+            String text = (String) columna [0];
+            String alineacio = (String) columna [1];
+            int ample = (int) columna[2];
+
+            if (text.length() > ample){
+                text = text.substring(0,ample);
+            }
+            int espais = ample-text.length();
+
+            switch(alineacio){
+                case "left":
+                resultat.append(text);
+                resultat.append(" ".repeat(espais));
+                break;
+                case "right":
+                resultat.append(" ".repeat(espais));
+                resultat.append(text);
+                break;
+                case "center":
+                int espaciosIzq = espais / 2;
+                int espaciosDer = espais - espaciosIzq;
+                resultat.append(" ".repeat(espaciosDer));
+                resultat.append(text);
+                resultat.append(" ".repeat(espaciosDer));
+                break;
+            }
+        }
+        return resultat.toString();
     }
 
     /**
