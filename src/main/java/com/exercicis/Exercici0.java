@@ -549,8 +549,18 @@ public class Exercici0 {
             String observacions,
             double preu) {
 
-        // TODO
-        return "";
+        String nuevoID = generaClauOperacio();
+
+        HashMap<String,Object> operacio = new HashMap<>();
+        operacio.put("id",nuevoID);
+        operacio.put("tipus",tipus);
+        operacio.put("clients",clientsImplicats);
+        operacio.put("data",data);
+        operacio.put("observacions",observacions);
+        operacio.put("preu",preu);
+
+        operacions.add(operacio);
+        return nuevoID;
     }
 
     /**
