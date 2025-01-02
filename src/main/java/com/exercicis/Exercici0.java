@@ -1,6 +1,4 @@
 package com.exercicis;
-import java.lang.classfile.Label;
-import java.lang.classfile.constantpool.LoadableConstantEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1040,8 +1038,16 @@ Impostos:  21% (14.41)                     Total: 83.04
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirFactors"
      */
     public static ArrayList<String> llegirFactors(Scanner scanner) {
-        // TODO
-        return null;
+        ArrayList<String> factors = new ArrayList<>();
+
+        System.out.print("Introdueix el primer factor ('autònom' o 'empresa'): ");
+        String factor1 = scanner.nextLine().trim();
+        while (!factor1.equals("autònom") && !factor1.equals("empresa")) {
+            System.out.println("Factor no vàlid. Ha de ser 'autònom' o 'empresa'.");
+            System.out.print("Introdueix el primer factor ('autònom' o 'empresa'):");
+            factor1 = scanner.nextLine().trim();
+        } 
+            return null;
     }
     
     /**
