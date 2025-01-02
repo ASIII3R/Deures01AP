@@ -1047,7 +1047,24 @@ Impostos:  21% (14.41)                     Total: 83.04
             System.out.print("Introdueix el primer factor ('autònom' o 'empresa'):");
             factor1 = scanner.nextLine().trim();
         } 
-            return null;
+        factors.add(factor1);
+        String promptFactor2 = factor1.equals("autònom") ?
+                "Introdueix el segon factor ('risc alt' o 'risc mitjà'): " :
+                "Introdueix el segon factor ('risc alt', 'risc baix' o 'risc mitjà'): ";
+        System.out.print(promptFactor2);
+        String factor2 = scanner.nextLine().trim();
+        while (true){
+            if (factor1.equals("autònom")){
+                if (factor2.equals("risc alt") || factor2.equals("risc mitjà")) break;
+                System.out.println("Factor no vàlid. Per a autònoms només pot ser 'risc alt' o 'risc mitjà'.");
+            }else{
+                if (factor2.equals("risc alt")|| factor2.equals("risc baix")|| factor2.equals("risc mitjà"))break;
+                System.out.println("Factor no vàlid. Ha de ser 'risc alt', 'risc baix' o 'risc mitjà'.");
+            }
+            System.out.print(promptFactor2);
+            factor2 = scanner.nextLine().trim();
+        }
+            return factors;
     }
     
     /**
@@ -1064,8 +1081,15 @@ Impostos:  21% (14.41)                     Total: 83.04
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirDescompte"
      */
     public static double llegirDescompte(Scanner scanner) {
-        // TODO
-        return 0.0;
+        System.out.print("Introdueix el descompte (0-20): ");
+        String descompteInput = scanner.nextLine().trim();
+
+        while (!descompteInput.matches("\\d+(\\.\\d+)?") || !validarDescompte(Double.parseDouble(descompteInput))) {
+            System.out.println("Descompte no vàlid. Ha de ser un número entre 0 i 20.");
+            System.out.print("Introdueix el descompte (0-20): ");
+            descompteInput = scanner.nextLine().trim();
+        }
+        return Double.parseDouble(descompteInput);
     }
 
     /**
