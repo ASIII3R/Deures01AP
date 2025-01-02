@@ -892,8 +892,16 @@ Impostos:  21% (14.41)                     Total: 83.04
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlistarClientsMenu"
      */
     public static ArrayList<String> getLlistarClientsMenu() {
-        // TODO
-        return null;
+        ArrayList<String> linies = new ArrayList<>();
+        linies.add("=== Llistar Clients ===");
+        if (clients.isEmpty()){
+            linies.add("No hi ha clients per mostrar.");
+            return linies;
+        }
+        for (String clau : clients.keySet()){
+            linies.add(clau +": "+clients.get(clau).toString());
+        }
+        return linies;
     }
 
     /**
@@ -904,7 +912,9 @@ Impostos:  21% (14.41)                     Total: 83.04
      * @test ./runTest.sh "com.exercicis.TestExercici0#testDibuixarLlista"
      */
     public static void dibuixarLlista(ArrayList<String> llista) {
-        // TODO
+        for (String linia : llista){
+            System.out.println(linia);
+        }
     }
     
 
@@ -934,8 +944,37 @@ Impostos:  21% (14.41)                     Total: 83.04
      * @test ./runTest.sh "com.exercicis.TestExercici0#testObtenirOpcio"
      */
     public static String obtenirOpcio(Scanner scanner) {
-        // TODO
-        return "";
+        ArrayList<String> menu = getCadenesMenu();
+        
+        while (true) {
+            System.out.print("Selecciona una opció (número o paraula clau): ");
+
+            String opcio = scanner.nextLine();
+            
+            try {
+                int index = Integer.parseInt(opcio);
+                if (index == 0) {
+                    return "Sortir";
+                } else if (index > 0 && index < menu.size() - 1) {
+                    return menu.get(index).substring(3).trim();
+                }
+            } catch (NumberFormatException e) {
+            }
+            
+            String opcioNormalized = opcio.trim().toLowerCase().replace("ó", "o");
+            
+            for (int i = 0; i < menu.size(); i++) {
+                String paraulaClau = menu.get(i).substring(3).trim();
+                String paraulaClauNormalized = paraulaClau.toLowerCase().replace("ó", "o");
+                
+                if (paraulaClauNormalized.equals(opcioNormalized)) {
+                    return paraulaClau;
+                }
+            }
+            
+            // Si arribem aquí, l'opció no és vàlida
+            System.out.println("Opció no vàlida. Torna a intentar-ho.");
+        }
     }
 
     /**
@@ -950,8 +989,15 @@ Impostos:  21% (14.41)                     Total: 83.04
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirNom"
      */
     public static String llegirNom(Scanner scanner) {
-        // TODO
-        return "";
+        System.out.print("Introdueix el nom del client: ");
+        String nom = scanner.nextLine().trim();
+
+        while(!validarNom(nom)){
+            System.out.println("Nom no vàlid. Només s'accepten lletres i espais.");
+            System.out.print("Introdueix el nom del client: ");
+            nom = scanner.nextLine().trim();
+        }
+        return nom;
     }
 
     /**
@@ -966,8 +1012,15 @@ Impostos:  21% (14.41)                     Total: 83.04
      * @test ./runTest.sh "com.exercicis.TestExercici0#testLlegirEdat"
      */
     public static int llegirEdat(Scanner scanner) {
-        // TODO
-        return 0;
+        System.out.print("Introdueix l'edat del client(18-100): ");
+        String edatInput = scanner.nextLine().trim();
+
+        while (!isAllDigits(edatInput) || !validarEdat(Integer.parseInt(edatInput))) {
+            System.out.println("Edat no vàlida. Introdueix un número entre 18 i 100.");
+            System.out.print("Introdueix l'edat del client (18-100): ");
+            edatInput = scanner.nextLine().trim();
+        }
+        return Integer.parseInt(edatInput);
     }
     
     /**
