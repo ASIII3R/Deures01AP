@@ -1,15 +1,33 @@
 -------------------------------------------------------------------------------
 Test set: com.exercicis.TestExercici0
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.086 s <<< FAILURE! -- in com.exercicis.TestExercici0
-com.exercicis.TestExercici0.testAfegirClientMenu -- Time elapsed: 0.052 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: Per l'entrada 'Joan\n30\nautònom\nrisc alt\n10\n': L'última línia no comença amb el text esperat ==> expected: <true> but was: <false>
+Tests run: 35, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.104 s <<< FAILURE! -- in com.exercicis.TestExercici0
+com.exercicis.TestExercici0.testAfegirClientMenu -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Per l'entrada '123\nMaria\n15\n25\nempresa\nrisc baix\n15\n': L'última línia no comença amb el text esperat ==> expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
 	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
 	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
 	at com.exercicis.TestExercici0.testAfegirClientMenu(TestExercici0.java:1273)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.exercicis.TestExercici0.testEsborrarClientMenu -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+Per l'entrada 'client_999\n' a la línia 1:
+>>>>>>>>>> Diff found >>>>>>>>>>
+Strings differ in length. Extra content in expected string at position 38
+
+<<<<<<<<<< Diff end <<<<<<<<<<
+ ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.exercicis.TestExercici0.testEsborrarClientMenu(TestExercici0.java:1436)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)

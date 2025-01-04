@@ -1,12 +1,6 @@
 package com.exercicis;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.Scanner;
 
 /*
    Implementa una versió simplificada del joc 2048 en Java.
@@ -87,7 +81,18 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testPrintBoardWithLargeNumbers"
      */
     public static void printBoard() {
-        // TODO
+        System.out.println("+----+----+----+----+");
+        for (int[] fila:board){
+            for (int celda: fila){
+                if (celda ==0){
+                    System.out.printf("|    ",celda == 0? "":celda);
+                }else{
+                    System.out.printf("|%4d", celda == 0 ? "" : celda);
+                }
+            }
+            System.out.println("|");
+            System.out.println("+----+----+----+----+");
+        }
     }
 
     /**
@@ -102,7 +107,13 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testSpawnDoNotOverwriteExisting"
      */
     public static void spawnTile() {
-        // TODO
+        int a;
+        int b;
+        do { 
+            a = random.nextInt(SIZE);
+            b = random.nextInt(SIZE);
+        } while (board[a][b] != 0);
+        board[a][b] = random.nextInt(10) == 0?4:2;
     }
 
     /**
@@ -140,7 +151,33 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testMoveLeftFullRowWithoutMerge"
      */
     public static void moveLeft() {
-        // TODO
+        for (int row = 0; row < SIZE; row=row+1) {
+            int[] newRow = new int[SIZE];
+            int newIndex = 0;
+
+            for (int col = 0; col < SIZE; col = col+1){
+                if (board[row][col]!=0){
+                    newRow[newIndex] = board[row][col];
+                    newIndex = newIndex +1;
+               }
+            }
+        
+            for (int i = 0; i < SIZE - 1; i=i+1) {
+                if (newRow[i]!= 0 && newRow[i] == newRow[i+1]){
+                    newRow[i]*=2;
+                    newRow[i+1] = 0;
+                }
+            }
+            int [] rowFinal = new int[SIZE];
+            int finalIndex = 0;
+            for (int i = 0; i<SIZE; i=i+1){
+                if (newRow[i]!=0){
+                    rowFinal[finalIndex] = newRow[i];
+                    finalIndex = finalIndex+1;
+                }
+            }
+            board[row] = rowFinal;
+        }
     }
 
     /**
@@ -178,7 +215,10 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testMoveRightFullColumnWithoutMerge"
      */
     public static void moveRight() {
-        // TODO
+        for (int row = 0; row<SIZE;row = row+1){
+            int[] newRow = new int[SIZE];
+            int newIndex = SIZE -1;
+        }
     }
 
     /**
