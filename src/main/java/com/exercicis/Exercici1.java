@@ -218,6 +218,28 @@ public class Exercici1 {
         for (int row = 0; row<SIZE;row = row+1){
             int[] newRow = new int[SIZE];
             int newIndex = SIZE -1;
+
+            for (int col = SIZE -1; col >= 0; col = col-1){
+                if (board[row][col]!= 0){
+                    newRow[newIndex] = board[row][col];
+                    newIndex = newIndex -1;
+                }
+            }
+            for (int i = SIZE -1 ; i>0; i=i-1){
+                if (newRow[i]!=0 && newRow[i] == newRow[i-1]){
+                    newRow[i] *=2;
+                    newRow[i-1]=0;
+                }
+            }
+            int [] rowFinal = new int[SIZE];
+            int finalIndex = SIZE -1;
+            for (int i = SIZE -1; i>=0; i=i-1){
+                if (newRow[i] != 0) {
+                    rowFinal[finalIndex] = newRow[i];
+                    finalIndex--;
+                }
+            }
+            board[row] = rowFinal;
         }
     }
 
@@ -256,7 +278,34 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testMoveUpFullColumnWithoutMerge"
      */
     public static void moveUp() {
-        // TODO
+        for (int col = 0; col <SIZE; col = col+1){
+            int[] newCol = new int[SIZE];
+            int newIndex = 0;
+
+            for(int row = 0; row<SIZE; row=row+1){
+                if (board[row][col]!=0){
+                    newCol[newIndex] = board[row][col];
+                    newIndex= newIndex+1;
+                }
+            }
+            for (int i = 0; i <SIZE -1; i= i+1){
+                if (newCol[i]!=0 && newCol[i] == newCol[i+1]){
+                    newCol[i] *= 2;
+                    newCol[i+1] = 0;
+                }
+            }
+            int[] colFinal = new int[SIZE];
+            int finalIndex = 0;
+            for (int i = 0; i<SIZE; i=i+1){
+                if (newCol[i] != 0) {
+                    colFinal[finalIndex] = newCol[i];
+                    finalIndex++;
+                }
+            }
+            for (int row = 0; row < SIZE; row++) {
+                board[row][col] = colFinal[row];
+            }
+        }
     }
 
     /**
