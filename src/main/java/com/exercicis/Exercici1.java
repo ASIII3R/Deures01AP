@@ -343,7 +343,34 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testMoveDownFullColumnWithoutMerge"
      */
     public static void moveDown() {
-        // TODO
+        for (int col = 0; col<SIZE; col = col+1){
+            int[] newCol = new int[SIZE];
+            int newIndex = SIZE -1;
+
+            for (int row = SIZE -1; row >= 0; row = row-1){
+                if (board[row][col]!=0){
+                    newCol[newIndex] = board[row][col];
+                    newIndex = newIndex - 1;
+                }
+            }
+            for (int i = SIZE -1; i>0; i=i-1){
+                if (newCol[i] != 0 && newCol[i] == newCol[i-1]){
+                    newCol[i] *=2;
+                    newCol[i-1] = 0;
+                }
+            }
+            int[] finalCol = new int[SIZE];
+            int finalIndex = SIZE - 1;
+            for (int i = SIZE - 1; i >= 0; i--) {
+                if (newCol[i] != 0) {
+                    finalCol[finalIndex] = newCol[i];
+                    finalIndex--;
+                }
+            }
+            for (int row = 0; row<SIZE; row = row+1){
+                board[row][col] = finalCol[row];
+            }
+        }
     }
 
     /**
@@ -364,8 +391,20 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testGameWinWithMultipleConditions"
      */
     public static String isGameFinished() {
-        // TODO
-        return "continue";
+        for (int row = 0; row<SIZE; row = row+1){
+            for (int col = 0; col <SIZE; col = col+1){
+                if (board[row][col]==128) return "win";
+            }
+        }
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                if (board[row][col]==0) return "continue";
+                if (row > 0 && board[row][col] == board[row - 1][col]) return "continue";
+                if (col > 0 && board[row][col] == board[row][col - 1]) return "continue";
+            }
+    }
+    return "lost";
+
     }
 
     /**
@@ -396,9 +435,51 @@ public class Exercici1 {
      * @test ./runTest.sh "com.exercicis.TestExercici1#testPlayMixedCaseCommands"
      */
     public static void play(Scanner scanner) {
-        // TODO
+        String message = "";
+        spawnTile();
+        while (true) {
+            spawnTile();
+            clearScreen();
+            printBoard();
+            if (message.compareTo("") != -1) {
+                System.out.println(message);
+            }
+            String gameFinished = isGameFinished();
+            if (gameFinished.equals("win")) {
+                System.out.println("You win, congrats!");
+                break;
+            }
+            if (gameFinished.equals("lost")) {
+                System.out.println("Game Over, you are a loser!");
+                break;
+            }
+            System.out.println("Enter move (left, up, right, down, exit): ");
+            String move = scanner.nextLine().toLowerCase();
+            switch (move) {
+                case "l":
+                case "left":
+                    moveLeft();
+                    break;
+                case "r":
+                case "right":
+                    moveRight();
+                    break;
+                case "u":
+                case "up":
+                    moveUp();
+                    break;
+                case "d":
+                case "down":
+                    moveDown();
+                    break;
+                case "exit":
+                    System.out.println("Exit game ...");
+                    return;
+                default:
+                    message = "Invalid move!";
+            }
+        } 
     }
-
     /**
      * 
      * @run ./run.sh "com.exercicis.Exercici1"
